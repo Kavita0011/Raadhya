@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(345, 82%, 69%);
+  --primary-foreground: hsl(280, 45%, 15%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom Raadhya Tantra Colors */
+  --deep-purple-900: hsl(260, 60%, 12%);
+  --deep-purple-800: hsl(255, 55%, 25%);
+  --deep-purple-700: hsl(252, 50%, 35%);
+  --coral-500: hsl(345, 100%, 70%);
+  --coral-400: hsl(345, 100%, 77%);
+  --coral-300: hsl(345, 100%, 85%);
+  --golden-500: hsl(51, 100%, 50%);
+  --golden-400: hsl(39, 100%, 50%);
+  --golden-300: hsl(51, 100%, 70%);
+}
+
+.dark {
+  --background: hsl(260, 60%, 12%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(260, 15%, 15%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(260, 60%, 12%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(260, 60%, 12%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(260, 15%, 20%);
+  --input: hsl(260, 15%, 20%);
+  --primary: hsl(345, 82%, 69%);
+  --primary-foreground: hsl(280, 45%, 15%);
+  --secondary: hsl(260, 15%, 15%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(260, 15%, 15%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .deep-gradient {
+    background: linear-gradient(135deg, hsl(var(--deep-purple-900)) 0%, hsl(var(--deep-purple-800)) 50%, hsl(var(--deep-purple-700)) 100%);
+  }
+  
+  .lotus-gradient {
+    background: linear-gradient(135deg, hsl(var(--coral-500)) 0%, hsl(var(--golden-500)) 50%, hsl(var(--coral-400)) 100%);
+  }
+  
+  .chat-bubble-user {
+    background: linear-gradient(135deg, hsl(var(--coral-500)) 0%, hsl(var(--coral-400)) 100%);
+  }
+  
+  .chat-bubble-ai {
+    background: linear-gradient(135deg, hsla(var(--golden-500), 0.1) 0%, hsla(var(--coral-500), 0.1) 100%);
+    border: 1px solid hsla(var(--golden-500), 0.2);
+  }
+  
+  .protection-shield {
+    background: linear-gradient(135deg, hsl(142, 76%, 36%) 0%, hsl(142, 86%, 28%) 100%);
+    box-shadow: 0 0 20px hsla(142, 76%, 36%, 0.3);
+  }
+  
+  .code-preview {
+    background: linear-gradient(135deg, hsla(var(--deep-purple-800), 0.8) 0%, hsla(var(--deep-purple-900), 0.9) 100%);
+    backdrop-filter: blur(10px);
+  }
+  
+  .sacred-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsla(var(--golden-500), 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsla(var(--coral-500), 0.1) 0%, transparent 50%);
+  }
+}
+
+@keyframes lotus-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px hsla(var(--coral-500), 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 40px hsla(var(--golden-500), 0.4); 
+  }
+}
+
+@keyframes sacred-pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.7; 
+  }
+  50% { 
+    transform: scale(1.05); 
+    opacity: 1; 
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
+.animate-lotus-glow {
+  animation: lotus-glow 3s ease-in-out infinite;
+}
+
+.animate-sacred-pulse {
+  animation: sacred-pulse 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
