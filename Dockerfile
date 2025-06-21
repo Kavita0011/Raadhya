@@ -1,19 +1,16 @@
-# Raadhya Tantra - Divine AI Wisdom Platform
-# Multi-stage Dockerfile for Hugging Face / Render
-
 # ---------- Builder Stage ----------
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy and install dependencies (devDependencies included)
+# Install ALL dependencies (including devDependencies)
 COPY package*.json ./
 RUN npm install
 
-# Copy full source
+# Copy source files
 COPY . .
 
-# Build app (requires vite and esbuild)
+# Build the frontend and server
 RUN npm run build
 
 # ---------- Production Stage ----------
@@ -25,19 +22,19 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production && npm cache clean --force
 
-# Copy compiled output
+# Copy built output from builder
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
 
-# Create non-root user
+# Create secure non-root user
 RUN addgroup -g 1001 -S nodejs && adduser -S raadhya -u 1001
 RUN chown -R raadhya:nodejs /app
 USER raadhya
 
-# Expose port
+# Expose your app port
 EXPOSE 7860
 
-# Optional: Healthcheck
+# Optional health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node -e "require('http').get('http://localhost:7860/api/security/stats', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
 
