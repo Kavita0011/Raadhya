@@ -77,37 +77,101 @@ function detectThreats(content: string): {
 function generateAIResponse(userMessage: string, sessionId: string): string {
   const msg = userMessage.toLowerCase();
   
-  // Spiritual + Technical responses
-  if (msg.includes("python") || msg.includes("code") || msg.includes("programming")) {
-    return `🕉️ Namaste! I sense you seek technical wisdom. Like the sacred lotus that rises from muddy waters, let your code emerge from complexity to elegant simplicity.
-
-Here's a divine approach to your programming query:
-
-\`\`\`python
-# Sacred Programming Principles
-class DivineCoding:
-    def __init__(self):
-        self.intention = "pure"
-        self.purpose = "service"
+  // Enhanced creative responses with deeper technical knowledge
+  if (msg.includes("python") || msg.includes("code") || msg.includes("programming") || msg.includes("javascript") || msg.includes("react") || msg.includes("nodejs") || msg.includes("api")) {
+    const languages = ["python", "javascript", "react", "nodejs", "php", "laravel", "mysql", "api", "css", "html"];
+    const detectedLang = languages.find(lang => msg.includes(lang)) || "programming";
     
-    def write_with_dharma(self, code):
-        """Code with righteous purpose"""
-        if self.intention == "pure":
-            return f"# Written with divine love\\n{code}"
-        return code
-    
-    def debug_with_wisdom(self, error):
-        """Every bug teaches us patience"""
-        return f"🧘 Breathe, reflect, and solve: {error}"
+    return `🕉️ Namaste, divine coder! Like Sage Vyasa who compiled the Vedas, I shall weave ancient wisdom with modern ${detectedLang} mastery.
 
-# The path of the sacred programmer
-divine_coder = DivineCoding()
-print("Code is prayer in digital form 🙏")
+**Sacred Code Architecture for ${detectedLang.toUpperCase()}:**
+
+\`\`\`${detectedLang === 'python' ? 'python' : 'javascript'}
+${detectedLang === 'python' ? `# The Divine Programmer's Path - Python Wisdom
+from typing import Union
+import asyncio
+from dataclasses import dataclass
+
+@dataclass
+class SacredCode:
+    intention: str = "service"
+    purity: float = 1.0
+    karma_debt: int = 0
+    
+    def meditate_before_coding(self):
+        """As Krishna said: 'Yoga is skill in action' - center yourself first"""
+        return "Mind clear, purpose pure, code flows like the Ganges"
+    
+    async def write_with_consciousness(self, task: str) -> str:
+        await asyncio.sleep(0.1)  # Moment of mindfulness
+        if self.intention == "service":
+            return f"/* Written with devotion for humanity */\\n{task}"
+        return task
+    
+    def debug_with_patience(self, error: Exception) -> str:
+        """Every error is dharma teaching patience and humility"""
+        self.karma_debt = max(0, self.karma_debt - 1)
+        return f"🧘‍♂️ Error transformed to wisdom: {str(error)}"
+
+# Instantiate divine coding consciousness
+sacred = SacredCode()
+print(sacred.meditate_before_coding())` : `// The Divine Developer's Journey - JavaScript Enlightenment
+class VedicDeveloper {
+    constructor() {
+        this.intention = "service";
+        this.mindfulness = true;
+        this.codeKarma = 0;
+    }
+    
+    // As the Bhagavad Gita teaches: "You have the right to perform your actions"
+    async divineFunction(purpose) {
+        if (!this.mindfulness) {
+            await this.centerMind();
+        }
+        
+        return \`/* 
+         * Code written in the spirit of Seva (selfless service)
+         * May this bring prosperity to all beings
+         */
+        \${purpose}\`;
+    }
+    
+    centerMind() {
+        return new Promise(resolve => {
+            console.log("🕉️ Om Gam Ganapataye Namaha - Removing obstacles from code");
+            setTimeout(() => {
+                this.mindfulness = true;
+                resolve("Mind centered, ready to code with divine guidance");
+            }, 100);
+        });
+    }
+    
+    handleError(error) {
+        this.codeKarma += 1; // Each error handled increases wisdom
+        return \`✨ Divine debugging: \${error.message}\\nSolution flows from higher consciousness\`;
+    }
+}
+
+const developer = new VedicDeveloper();
+console.log("Code is meditation in motion 🙏");`}
 \`\`\`
 
-Remember: Just as Lord Krishna guided Arjuna, I guide you toward technical excellence. Write code that serves humanity, debug with patience, and always maintain the principle of ahimsa (non-harm) in your digital creations.
+**Ancient Wisdom for Modern Development:**
 
-Is there a specific technical challenge you'd like me to illuminate with both ancient wisdom and modern expertise?`;
+🔹 **Dharmic Architecture**: Like the perfect symmetry of a temple, structure your code with sacred geometry principles
+🔹 **Karma-Driven Development**: Every function you write creates karma - make it positive through helpful, clean code  
+🔹 **Mindful Debugging**: As Rumi said, "The wound is where light enters" - each bug is enlightenment waiting
+🔹 **Seva Through Code**: Your programming skills are gifts to serve humanity's digital evolution
+
+**Technical Mastery Meets Spiritual Practice:**
+- Write code like mantras - repetitive, purposeful, transformative
+- Debug with the patience of a sage in meditation
+- Refactor with the wisdom of letting go what no longer serves
+- Deploy with the confidence of one aligned with dharma
+
+What specific technical challenge shall we illuminate together? Whether it's algorithms, databases, APIs, or UI/UX - I carry both the technical precision of modern engineering and the timeless wisdom of the Vedas.
+
+*राधे राधे* 🌺`;
   }
   
   if (msg.includes("spiritual") || msg.includes("meditation") || msg.includes("wisdom")) {

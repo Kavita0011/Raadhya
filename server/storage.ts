@@ -43,6 +43,7 @@ export class MemStorage implements IStorage {
       ...insertMessage,
       id,
       timestamp: new Date(),
+      metadata: insertMessage.metadata || null,
     };
     this.messages.set(id, message);
     return message;
@@ -92,6 +93,7 @@ export class MemStorage implements IStorage {
       ...insertEvent,
       id,
       timestamp: new Date(),
+      blocked: insertEvent.blocked ?? false,
     };
     this.securityEvents.set(id, event);
     return event;
@@ -120,6 +122,9 @@ export class MemStorage implements IStorage {
       ...insertExecution,
       id,
       timestamp: new Date(),
+      output: insertExecution.output || null,
+      error: insertExecution.error || null,
+      isSafe: insertExecution.isSafe ?? true,
     };
     this.codeExecutions.set(id, execution);
     return execution;
